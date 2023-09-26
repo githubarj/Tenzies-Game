@@ -1,7 +1,10 @@
+import { useState } from "react";
 import Die from "./Die";
 import "./main.css";
 
 function Main() {
+  const [diceArray, setDiceArray] = useState(allNewDice());
+
   function allNewDice() {
     const arr = [];
     for (let i = 0; i < 10; i++) {
@@ -10,23 +13,21 @@ function Main() {
     return arr;
   }
 
-  console.log(allNewDice());
+  const dice = diceArray.map((item, index) => {
+    return <Die key={index} value={item} />;
+  });
+
+  function reRoll() {
+    setDiceArray(allNewDice());
+  }
 
   return (
     <div className="main-container">
       <div className="main-center">
-        <div className="dice">
-          <Die value={1} />
-          <Die value={1} />
-          <Die value={1} />
-          <Die value={1} />
-          <Die value={1} />
-          <Die value={1} />
-          <Die value={1} />
-          <Die value={1} />
-          <Die value={1} />
-          <Die value={1} />
-        </div>
+        <div className="dice">{dice}</div>
+        <button className="roll" onClick={reRoll}>
+          Roll
+        </button>
       </div>
     </div>
   );
