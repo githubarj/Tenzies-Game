@@ -1,0 +1,15 @@
+.main-container {
+  padding: 30px 20px;
+  background: #0B2434;
+  width: 100%;
+  height: 100%;
+
+}
+
+.main-center{
+    padding: 34px;
+    width: 100%;
+    height: 320px;
+    border-radius: 10px;
+    background: #F5F5F5;
+}
