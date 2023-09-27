@@ -58,8 +58,7 @@ button {
   line-height: normal;
 
   border-radius: 10px;
-  width: 92.16px;
-  height: 35.84px;
+  padding: 6.4px 21px;
   background: #5035ff;
   border: none;
   align-items: center;

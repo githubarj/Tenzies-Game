@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Die from "./Die";
 import { nanoid } from "nanoid";
 import "./main.css";
+import Confetti from "react-confetti";
 
 function Main() {
   const [diceArray, setDiceArray] = useState(allNewDice());
+  const [tenzies, setTenzies] = useState(false);
+
+  useEffect(() => {
+    setTenzies(
+      diceArray.every(
+        (item) => diceArray[0].value === item.value && item.isHeld
+      )
+    );
+  }, [diceArray]);
+
 
   function generateNewDie() {
     return {
@@ -36,7 +47,6 @@ function Main() {
         item.id === id ? { ...item, isHeld: !item.isHeld } : item
       )
     );
-    console.log(diceArray);
   }
 
   const dice = diceArray.map((item) => {
@@ -45,6 +55,7 @@ function Main() {
 
   return (
     <div className="main-container">
+      {tenzies && <Confetti />}
       <div className="main-center">
         <div className="text">
           <h1 className="title">Tenzies</h1>
@@ -55,7 +66,7 @@ function Main() {
         </div>
         <div className="dice">{dice}</div>
         <button className="roll" onClick={reRoll}>
-          Roll
+          {!tenzies ? "Roll" : "New Game"}
         </button>
       </div>
     </div>
